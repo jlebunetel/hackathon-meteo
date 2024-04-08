@@ -1,0 +1,142 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hackathon-meteo"
+dynamic = ["version"]
+requires-python = ">= 3.12"
+dependencies = [
+    "crispy-bootstrap3",
+    "django >= 5.0",
+    "django-allauth",
+    "django-crispy-forms",
+    "django-filter",
+    "django-stubs[compatible-mypy]",
+    "djangorestframework",
+    "djangorestframework-stubs[compatible-mypy]",
+    "icalendar",
+    "markdown",
+    "psycopg[binary,pool]",
+    "pydantic",
+    "pydantic-settings",
+    "python-json-logger",
+    "rich",
+]
+authors = [{ name = "Julien Lebunetel", email = "julien@lebunetel.com" }]
+maintainers = [{ name = "Julien Lebunetel", email = "julien@lebunetel.com" }]
+description = "Anticiper, prévenir et gérer les risques naturels."
+readme = { file = "README.md", content-type = "text/markdown" }
+license = { file = "LICENSE" }
+keywords = ["hackathon-meteo"]
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.12",
+    "Framework :: Django",
+    "Operating System :: POSIX :: Linux",
+    "Environment :: Web Environment",
+    "Topic :: Scientific/Engineering :: Atmospheric Science",
+]
+
+[project.optional-dependencies]
+dev = [
+    "commitizen",
+    "mypy",
+    "pip-tools",
+    "pre-commit",
+    "pylint",
+    "pylint-django",
+    "ruff",
+]
+test = ["pytest", "pytest-cov", "pytest-django", "pytest-xdist[psutil]"]
+
+[project.urls]
+Homepage = "https://github.com/jlebunetel/hackathon-meteo"
+Repository = "https://github.com/jlebunetel/hackathon-meteo"
+Issues = "https://github.com/jlebunetel/hackathon-meteo/issues"
+Changelog = "https://github.com/jlebunetel/hackathon-meteo/blob/main/CHANGELOG.md"
+
+[tool.pylama]
+format = "pylint"
+linters = "eradicate,mccabe,pycodestyle,pyflakes,radon,vulture"
+
+[[tool.pylama.files]]
+path = "*/migrations/*.py"
+skip = 1
+
+[tool.pylama.linter.vulture]
+min-confidence = 65
+
+[tool.mypy]
+packages = ["apps", "tests", "templates", "toolbox"]
+plugins = ["mypy_django_plugin.main"]
+ignore_missing_imports = true
+cache_dir = "/dev/null"
+
+[tool.django-stubs]
+django_settings_module = "toolbox.settings"
+
+[tool.pylint]
+init-hook = 'import sys; sys.path.append("apps")'
+jobs = 1
+recursive = true
+load-plugins = ["pylint_django"]
+django-settings-module = "toolbox.settings"
+output-format = "colorized"
+ignore-path = ["^.*/migrations/.*$"]
+disable = "duplicate-code"
+
+[tool.ruff]
+line-length = 88
+indent-width = 4
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.pip-tools]
+generate-hashes = false
+upgrade = true
+strip-extras = true
+
+[tool.pytest.ini_options]
+addopts = """
+--numprocesses=auto \
+--cov=./ \
+--cov-report=term:skip-covered \
+--cov-report=html \
+"""
+testpaths = ["tests"]
+DJANGO_SETTINGS_MODULE = "toolbox.settings"
+
+[tool.coverage.run]
+omit = [
+    "manage.py",
+    "toolbox/asgi.py",
+    "toolbox/settings.py",
+    "toolbox/urls.py",
+    "toolbox/wsgi.py",
+]
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.1.0"
+version_files = [
+    "pyproject.toml:version",
+    "README.md:version-",
+    "toolbox/__init__.py:__version__",
+]
+tag_format = "$version"
+update_changelog_on_bump = true
+annotated_tag = true
+
+[tool.hatch.version]
+path = "toolbox/__init__.py"
