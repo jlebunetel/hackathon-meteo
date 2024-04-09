@@ -40,7 +40,7 @@ class MeteoMatch:
 def translate(criteria: str):
     grammar = """
 MeteoMatchModel: requests*=Request;
-Request: (Init | Temp | Pp) ';'; 
+Request: (Init | Temp | Pp) ';';
 Init: 'Init station 'id=INT 'pour periode de 'aaaa=INT'-'mm=INT'-'jj=INT 'à 'aaaa_end=INT'-'mm_end=INT'-'jj_end=INT;
 Temp: 'temp dans' vals=Interval 'pdt' time=Interval;
 Pp: 'pp dans' vals=Interval 'pdt' time=Interval;
@@ -55,8 +55,8 @@ Value: INT;"""
 
 if __name__ == "__main__":
     example = """
-    Init station 1 pour periode de 2020-01-10 à 2022-01-10;  
-    temp dans [0, 1] pdt [0, 5]; 
-    temp dans [10, 20] pdt [6, 10]; 
+    Init station 1 pour periode de 2020-01-10 à 2022-01-10;
+    temp dans [0, 1] pdt [0, 5];
+    temp dans [10, 20] pdt [6, 10];
     pp dans [2, 1] pdt [6, 10]; """
     translate(example)

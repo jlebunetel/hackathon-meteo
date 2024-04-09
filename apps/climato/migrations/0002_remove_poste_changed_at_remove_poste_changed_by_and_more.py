@@ -4,26 +4,25 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('climato', '0001_initial'),
+        ("climato", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='poste',
-            name='changed_at',
+            model_name="poste",
+            name="changed_at",
         ),
         migrations.RemoveField(
-            model_name='poste',
-            name='changed_by',
+            model_name="poste",
+            name="changed_by",
         ),
         migrations.RemoveField(
-            model_name='poste',
-            name='created_at',
+            model_name="poste",
+            name="created_at",
         ),
         migrations.RemoveField(
-            model_name='poste',
-            name='created_by',
+            model_name="poste",
+            name="created_by",
         ),
     ]
