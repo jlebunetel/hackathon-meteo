@@ -4,6 +4,8 @@ Anticiper, prévenir et gérer les risques naturels
 ![version](https://img.shields.io/badge/version-0.2.0-blue)
 ![python_version](https://img.shields.io/badge/python-3.12-blue)
 
+![logo](https://cdn.discordapp.com/attachments/1225054185985278016/1227023200622215200/Fichier_3.png?ex=6626e568&is=66147068&hm=f882f5d2cbdcacc0d3d36c5168496e8c5515b95a08da4b160f3602514013934f&)
+
 ## Getting started
 
 ### Requirements
@@ -79,4 +81,8 @@ The code in this project is licensed under MIT license. See the [LICENSE](LICENS
 
 ## Contributors
 
+- __Benjamin Lion__ - [k4r4c](https://github.com/k4r4c)
 - __Julien Lebunetel__ - [jlebunetel](https://github.com/jlebunetel)
+- __Philippe Hermant__ - [phgot](https://github.com/phgot)
+- __Pierre-Edouard Chaix__ - [pierreedouardchaix](https://github.com/pierreedouardchaix)
+- __Thanh Huy Le__ - [Geksmode](https://github.com/Geksmode)

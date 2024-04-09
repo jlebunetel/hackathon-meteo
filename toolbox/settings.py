@@ -109,11 +109,14 @@ INSTALLED_APPS: list[str] = [
     "django_filters",
     "crispy_forms",
     "crispy_bootstrap3",
+    "climato.apps.ClimatoConfig",
+    "corsheaders",
 ]
 
 MIDDLEWARE: list[str] = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -122,6 +125,7 @@ MIDDLEWARE: list[str] = [
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
     "allauth.account.middleware.AccountMiddleware",
 ]
+CORS_ALLOW_ALL_ORIGINS = True
 
 TEMPLATES: list[dict[str, Any]] = [
     {
@@ -231,12 +235,14 @@ REST_FRAMEWORK: dict[str, list[str]] = {
         "rest_framework.filters.SearchFilter",
     ],
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAdminUser",
+        "rest_framework.permissions.IsAuthenticatedOrReadOnly",
     ],
     "DEFAULT_RENDERER_CLASSES": [
         "rest_framework.renderers.JSONRenderer",
         "rest_framework.renderers.BrowsableAPIRenderer",
     ],
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": 10,
 }
 
 CRISPY_ALLOWED_TEMPLATE_PACKS: str = "bootstrap3"

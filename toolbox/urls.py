@@ -19,6 +19,7 @@ URL_APP_LIST: list[str] = [
 # Applications exposing API URLs:
 API_APP_LIST: list[str] = [
     "accounts",
+    "climato",
 ]
 
 
